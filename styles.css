@@ -375,6 +375,47 @@ h3 {
   color: var(--accent-strong);
 }
 
+.profile-compact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  margin: 30px 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.profile-compact img {
+  width: 92px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.profile-compact h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+}
+
+.profile-compact p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.profile-compact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 12px;
+  color: var(--accent-strong);
+  font-weight: 750;
+  font-size: 0.92rem;
+}
+
 .profile-panel:hover .portrait-inner {
   transform: scale(1.035);
   border-color: var(--accent);
@@ -946,6 +987,14 @@ a.meta:hover {
 
   .timeline-item {
     grid-template-columns: 1fr;
+  }
+
+  .profile-compact {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-compact img {
+    width: 110px;
   }
 }
 
