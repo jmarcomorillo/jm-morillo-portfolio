@@ -377,19 +377,21 @@ h3 {
 
 .profile-compact {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: start;
+  justify-items: center;
   margin: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
   padding: 18px;
   box-shadow: var(--shadow);
+  text-align: center;
 }
 
 .profile-compact img {
-  width: 92px;
+  width: min(150px, 48%);
   aspect-ratio: 1 / 1;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -409,7 +411,8 @@ h3 {
 .profile-compact-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 16px;
+  justify-content: center;
+  gap: 10px 14px;
   margin-top: 12px;
   color: var(--accent-strong);
   font-weight: 750;
@@ -1003,10 +1006,6 @@ a.meta:hover {
   }
 
   .timeline-item {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-compact {
     grid-template-columns: 1fr;
   }
 
