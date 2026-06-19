@@ -380,7 +380,7 @@ h3 {
   grid-template-columns: auto minmax(0, 1fr);
   gap: 18px;
   align-items: center;
-  margin: 0 0 34px;
+  margin: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
@@ -463,6 +463,22 @@ h3 {
 .section-head.page-intro p:not(.eyebrow) {
   margin-top: 18px;
   max-width: 680px;
+}
+
+.intro-profile-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.intro-profile-layout .section-head.page-intro {
+  margin-bottom: 0;
+}
+
+.intro-profile-layout .profile-compact {
+  align-self: stretch;
 }
 
 .section-head p {
@@ -953,6 +969,7 @@ a.meta:hover {
 
   .hero,
   .split,
+  .intro-profile-layout,
   .grid,
   .grid.two,
   .compact-grid,
