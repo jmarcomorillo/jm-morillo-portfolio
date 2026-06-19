@@ -614,6 +614,18 @@ a.meta:hover {
   display: block;
 }
 
+.screenshot-slot a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: zoom-in;
+}
+
+.screenshot-slot a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .screenshot-slot::after {
   content: "";
   position: absolute;
@@ -880,6 +892,15 @@ a.meta:hover {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.skill-top span {
+  max-width: 62%;
+  color: var(--accent-strong);
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: right;
 }
 
 .meter {
