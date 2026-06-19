@@ -27,8 +27,8 @@ const revealTargets = document.querySelectorAll(
 const capabilityRotator = document.querySelector("[data-capability-rotator]");
 const toast = document.querySelector("[data-toast]");
 const capabilities = [
-  { label: "jmarcomorillo@gmail.com", type: "copy", value: "jmarcomorillo@gmail.com" },
-  { label: "+63 992 325 9840", type: "copy", value: "+63 992 325 9840" },
+  { label: "jmarcomorillo@gmail.com", type: "email", value: "mailto:jmarcomorillo@gmail.com" },
+  { label: "+63 992 325 9840", type: "phone", value: "+63 992 325 9840", href: "sms:+639923259840" },
   { label: "linkedin.com/in/jm-morillo", type: "link", value: "https://www.linkedin.com/in/jm-morillo/" },
   { label: "facebook.com/on.jmm", type: "link", value: "https://www.facebook.com/on.jmm" }
 ];
@@ -64,12 +64,42 @@ async function copyText(text) {
   }
 }
 
+function isMobileContactTarget() {
+  return window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+}
+
+function handlePhoneContact(event, value, href) {
+  if (isMobileContactTarget()) return;
+  event.preventDefault();
+  showToast("Phone number copied");
+  copyText(value || href.replace("sms:", ""));
+}
+
+document.querySelectorAll("[data-phone-contact]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    handlePhoneContact(event, link.dataset.copyValue, link.getAttribute("href") || "");
+  });
+});
+
 if (capabilityRotator) {
   let capabilityIndex = 0;
-  capabilityRotator.setAttribute("aria-label", `Copy ${capabilities[0].label}`);
+  capabilityRotator.setAttribute("aria-label", `Email ${capabilities[0].label}`);
 
   capabilityRotator.addEventListener("click", () => {
     const current = capabilities[capabilityIndex];
+    if (current.type === "email") {
+      window.location.href = current.value;
+      return;
+    }
+    if (current.type === "phone") {
+      if (isMobileContactTarget()) {
+        window.location.href = current.href;
+      } else {
+        showToast("Phone number copied");
+        copyText(current.value);
+      }
+      return;
+    }
     if (current.type === "link") {
       window.open(current.value, "_blank", "noopener,noreferrer");
       return;
@@ -86,7 +116,13 @@ if (capabilityRotator) {
       capabilityRotator.textContent = current.label;
       capabilityRotator.setAttribute(
         "aria-label",
-        current.type === "link" ? `Open ${current.label}` : `Copy ${current.label}`
+        current.type === "email"
+          ? `Email ${current.label}`
+          : current.type === "phone"
+            ? `Message or copy ${current.label}`
+            : current.type === "link"
+              ? `Open ${current.label}`
+              : `Copy ${current.label}`
       );
       capabilityRotator.classList.remove("is-changing");
     }, 220);
