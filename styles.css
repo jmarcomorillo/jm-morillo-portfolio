@@ -633,6 +633,7 @@ a.meta:hover {
   background: linear-gradient(110deg, transparent 20%, color-mix(in srgb, var(--accent) 16%, transparent) 48%, transparent 76%);
   transform: translateX(-110%);
   transition: transform 700ms ease;
+  pointer-events: none;
 }
 
 .project-card:hover .screenshot-slot::after {
